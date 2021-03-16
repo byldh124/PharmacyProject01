@@ -94,6 +94,48 @@ public class IntroActivity extends AppCompatActivity {
                                 } else if (tagName.equals("dutyName")) {
                                     parser.next();
                                     item.setName(parser.getText());
+                                } else if (tagName.equals("dutyTime1c")){
+                                    parser.next();
+                                    item.setMonClose(parser.getText());
+                                } else if (tagName.equals("dutyTime1s")){
+                                    parser.next();
+                                    item.setMonOpen(parser.getText());
+                                } else if (tagName.equals("dutyTime2c")){
+                                    parser.next();
+                                    item.setTueClose(parser.getText());
+                                } else if (tagName.equals("dutyTime2s")){
+                                    parser.next();
+                                    item.setTueOpen(parser.getText());
+                                } else if (tagName.equals("dutyTime3c")){
+                                    parser.next();
+                                    item.setWedClose(parser.getText());
+                                } else if (tagName.equals("dutyTime3s")){
+                                    parser.next();
+                                    item.setWedOpen(parser.getText());
+                                } else if (tagName.equals("dutyTime4c")){
+                                    parser.next();
+                                    item.setThuClose(parser.getText());
+                                } else if (tagName.equals("dutyTime4s")){
+                                    parser.next();
+                                    item.setThuOpen(parser.getText());
+                                } else if (tagName.equals("dutyTime5c")){
+                                    parser.next();
+                                    item.setFriClose(parser.getText());
+                                } else if (tagName.equals("dutyTime5s")){
+                                    parser.next();
+                                    item.setFriOpen(parser.getText());
+                                } else if (tagName.equals("dutyTime6c")){
+                                    parser.next();
+                                    item.setSatClose(parser.getText());
+                                } else if (tagName.equals("dutyTime6s")){
+                                    parser.next();
+                                    item.setSatOpen(parser.getText());
+                                } else if (tagName.equals("dutyTime7c")){
+                                    parser.next();
+                                    item.setSunClose(parser.getText());
+                                } else if (tagName.equals("dutyTime7s")){
+                                    parser.next();
+                                    item.setSunOpen(parser.getText());
                                 } else if (tagName.equals("dutyTel1")) {
                                     parser.next();
                                     item.setTell(parser.getText());
