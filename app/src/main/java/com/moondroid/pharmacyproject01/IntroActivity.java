@@ -60,7 +60,7 @@ public class IntroActivity extends AppCompatActivity {
                 String address = "http://apis.data.go.kr/B552657/ErmctInsttInfoInqireService/getParmacyFullDown"
                         + "?serviceKey=" + apiKey
                         + "&pageNo=1"
-                        + "&numOfRows=23000";
+                        + "&numOfRows=1000";
 
                 try {
                     URL url = new URL(address);
