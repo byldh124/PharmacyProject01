@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,6 +23,81 @@
     <com.naver.maps.map.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_detail"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="16dp"
+        android:layout_marginBottom="-16dp"
+        app:cardElevation="32dp"
+        android:visibility="gone">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+            <FrameLayout
+                android:clickable="true"
+                android:onClick="clickHide"
+                android:layout_width="50dp"
+                android:layout_height="8dp"
+                android:background="@color/black"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="약국명"
+                android:textColor="#ff333333"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"/>
+            <TextView
+                android:id="@+id/item_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="서울특별시 성동구 홍익동 60"
+                android:layout_marginBottom="8dp"
+                android:textColor="#ff333333"
+                android:layout_below="@id/item_name"/>
+            <TextView
+                android:id="@+id/item_tell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_address"
+                android:textColor="#ff333333"
+                android:layout_marginBottom="8dp"
+                android:text="tel. 02-612-2644"/>
+            <TextView
+                android:id="@+id/item_open_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff333333"
+                android:layout_marginBottom="8dp"
+                android:text="월~금 : 08:00~16:00"
+                android:layout_below="@id/item_tell"/>
+            <TextView
+                android:id="@+id/item_open_time_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="#ff333333"
+                android:text="월~금 : 08:00~16:00"
+                android:layout_below="@id/item_open_time"/>
+            <TextView
+                android:id="@+id/item_open_time_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="#ff333333"
+                android:text="월~금 : 08:00~16:00"
+                android:layout_below="@id/item_open_time_sat"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>
