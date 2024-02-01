@@ -1,8 +1,10 @@
 package com.moondroid.pharmacyproject01.di
 
 import android.util.Log
+import com.google.gson.GsonBuilder
 import com.moondroid.pharmacyproject01.BuildConfig
 import com.moondroid.pharmacyproject01.data.ApiService
+import com.moondroid.pharmacyproject01.data.MyApiService
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import dagger.Module
@@ -14,12 +16,14 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     private const val BASE_URL = "http://apis.data.go.kr/B552657/ErmctInsttInfoInqireService/"
+    private const val MY_URL = "http://moondroid.dothome.co.kr/imagePuzzle/"
 
     @Provides
     @Singleton
@@ -51,18 +55,35 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofitInstance(
+    fun provideApiService(
         okHttpClient: OkHttpClient,
         tikXmlConverterFactory: TikXmlConverterFactory,
-    ): Retrofit {
-        return Retrofit.Builder()
+    ): ApiService {
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(tikXmlConverterFactory)
             .client(okHttpClient)
             .build()
+        return retrofit.create(ApiService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(ApiService::class.java)
+    fun provideGsonConverterFactory(): GsonConverterFactory {
+        return GsonConverterFactory.create(GsonBuilder().setLenient().create())
+    }
+
+    @Singleton
+    @Provides
+    fun provideMyApiService(
+        okHttpClient: OkHttpClient,
+        gsonConverterFactory: GsonConverterFactory,
+    ): MyApiService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(MY_URL)
+            .addConverterFactory(gsonConverterFactory)
+            .client(okHttpClient)
+            .build()
+        return retrofit.create(MyApiService::class.java)
+    }
 }

@@ -8,9 +8,15 @@ import com.moondroid.pharmacyproject01.domain.model.ApiResult
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
-    fun getListByAddress(
+    suspend fun checkAppVersion(
+        versionCode: Int,
+        versionName: String,
+        packageName: String
+    ): Flow<Int>
+
+    suspend fun getListByAddress(
         city: String,
-        district: String
+        district: String,
     ): Flow<PagingData<AddressItem>>
 
     suspend fun getListByLocation(

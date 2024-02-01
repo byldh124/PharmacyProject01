@@ -11,10 +11,10 @@ android {
 
     defaultConfig {
         applicationId = "com.moondroid.pharmacyproject01"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 33
-        versionCode = 2
-        versionName = "1.0.2"
+        versionCode = 4
+        versionName = "1.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

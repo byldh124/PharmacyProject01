@@ -42,9 +42,30 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/bg_edit_gray01</item>
         <item name="android:padding">10dp</item>
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/nanum_square_round_b</item>
         <item name="android:textColor">@color/gray_dark01</item>
         <item name="android:textColorHint">@color/gray_light01</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:fontFamily">@font/nanum_square_round_eb</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:elevation">2dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="ButtonRed01" parent="Button">
+        <item name="android:background">@drawable/bg_button_red_01</item>
+    </style>
+
+    <style name="ButtonGray01" parent="Button">
+        <item name="android:background">@drawable/bg_button_gray_01</item>
     </style>
 </resources>

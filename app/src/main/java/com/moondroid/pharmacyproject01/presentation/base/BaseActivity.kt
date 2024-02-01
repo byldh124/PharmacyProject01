@@ -11,8 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelLazy
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.moondroid.pharmacyproject01.common.NetworkConnection
 import com.moondroid.pharmacyproject01.common.collectEvent
+import com.moondroid.pharmacyproject01.common.logException
 import com.moondroid.pharmacyproject01.common.snack
+import com.moondroid.pharmacyproject01.presentation.dialog.ButtonDialog
 import com.moondroid.pharmacyproject01.presentation.dialog.DisconnectNetworkDialog
 import com.moondroid.pharmacyproject01.presentation.dialog.LoadingDialog
 
@@ -31,6 +34,11 @@ open class BaseActivity : AppCompatActivity() {
         baseViewModelLazy?.value?.let {
             collectEvent(it.commonEvent, ::handleEvent)
         }
+
+        // 네트워크 연결상태 observe
+        NetworkConnection.observe(this) {
+            disconnectNetworkDialog.isShow = !it
+        }
     }
 
     private fun handleEvent(event: BaseViewModel.CommonEvent) {
@@ -45,11 +53,24 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private fun showFailMessage(message: String, callback: () -> Unit) {
-
+        val builder = ButtonDialog.Builder(mContext).apply {
+            this.message = message
+            setPositiveButton("확인") {
+                callback()
+            }
+        }
+        builder.show()
     }
 
     private fun showErrorMessage(throwable: Throwable, callback: () -> Unit) {
-
+        logException(throwable)
+        val builder = ButtonDialog.Builder(mContext).apply {
+            this.message = "에러발생 - 고객센터에 문의해주세요.\n${throwable.javaClass.simpleName}"
+            setPositiveButton("확인") {
+                callback()
+            }
+        }
+        builder.show()
     }
 
     fun showLoading(isLoading: Boolean) {

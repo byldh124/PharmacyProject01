@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.moondroid.pharmacyproject01.common.SERVICE_KEY
 import com.moondroid.pharmacyproject01.data.ApiService
+import com.moondroid.pharmacyproject01.data.MyApiService
 import com.moondroid.pharmacyproject01.data.PagingSource
 import com.moondroid.pharmacyproject01.data.model.AddressItem
 import com.moondroid.pharmacyproject01.data.model.DetailItem
@@ -15,22 +16,32 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 
 class RepositoryImpl @Inject constructor(
-    private val retrofit: Retrofit,
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val mApiService: MyApiService,
 ) : Repository {
     companion object {
         const val RESULT_OK = "00"
     }
 
-    override fun getListByAddress(city: String, district: String): Flow<PagingData<AddressItem>> {
+    override suspend fun checkAppVersion(
+        versionCode: Int,
+        versionName: String,
+        packageName: String,
+    ): Flow<Int> {
+        return flow {
+            val response = mApiService.checkAppVersion(versionCode, versionName, packageName)
+            emit(response.code)
+        }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun getListByAddress(city: String, district: String): Flow<PagingData<AddressItem>> {
         return Pager(
             config = PagingConfig(10),
-            pagingSourceFactory = { PagingSource(retrofit, SERVICE_KEY, city, district) }
+            pagingSourceFactory = { PagingSource(apiService, SERVICE_KEY, city, district) }
         ).flow
     }
 

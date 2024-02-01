@@ -1,9 +1,11 @@
 package com.moondroid.pharmacyproject01.data.model
 
+import androidx.annotation.Keep
 import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 
+@Keep
 @Xml(name = "response")
 data class AddressResponse(
     @Element(name = "header")
@@ -12,6 +14,7 @@ data class AddressResponse(
     val body: AddressBody,
 )
 
+@Keep
 @Xml(name = "header")
 data class AddressHeader(
     @PropertyElement(name = "resultCode")
@@ -20,6 +23,7 @@ data class AddressHeader(
     val resultMsg: String,
 )
 
+@Keep
 @Xml(name = "body")
 data class AddressBody(
     @Element(name = "items")
@@ -32,12 +36,14 @@ data class AddressBody(
     val totalCount: Int,
 )
 
+@Keep
 @Xml(name = "items")
 data class AddressItems(
     @Element(name = "item")
     val item: List<AddressItem>,
 )
 
+@Keep
 @Xml
 data class AddressItem(
     @PropertyElement(name = "dutyName")
