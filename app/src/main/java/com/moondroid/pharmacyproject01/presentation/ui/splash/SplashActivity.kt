@@ -9,6 +9,7 @@ import com.moondroid.pharmacyproject01.common.viewBinding
 import com.moondroid.pharmacyproject01.databinding.ActivitySplashBinding
 import com.moondroid.pharmacyproject01.presentation.base.BaseActivity
 import com.moondroid.pharmacyproject01.presentation.ui.home.HomeActivity
+import com.moondroid.pharmacyproject01.presentation.ui.search.AddressActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("CustomSplashScreen")
@@ -19,6 +20,12 @@ class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(Intent(mContext, HomeActivity::class.java))
+        binding.btnMap.setOnClickListener {
+            startActivity(Intent(mContext, HomeActivity::class.java))
+        }
+
+        binding.btnSearch.setOnClickListener {
+            startActivity(Intent(mContext, AddressActivity::class.java))
+        }
     }
 }

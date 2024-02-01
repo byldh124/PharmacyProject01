@@ -1,16 +1,20 @@
 package com.moondroid.pharmacyproject01.data
 
+import com.moondroid.pharmacyproject01.data.model.AddressResponse
+import com.moondroid.pharmacyproject01.data.model.DetailResponse
 import com.moondroid.pharmacyproject01.data.model.LocationResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
     @GET("getParmacyListInfoInqire")
-    suspend fun getListByQuery(
-        @Query("serviceKey") versionCode: Int,
-        @Query("pageNo") versionName: String,
-        @Query("numOfRows") packageName: String,
-    ): SimpleResponse
+    suspend fun getListByAddress(
+        @Query("serviceKey") serviceKey: String,
+        @Query("Q0") city: String,
+        @Query("Q1") district: String,
+        @Query("pageNo") pageNo: Int,
+        @Query("numOfRows") numOfRows: Int,
+    ): AddressResponse
 
     @GET("getParmacyLcinfoInqire")
     suspend fun getListByLocation(
@@ -23,16 +27,9 @@ interface ApiService {
 
     @GET("getParmacyBassInfoInqire")
     suspend fun getDetail(
-        @Query("serviceKey") versionCode: Int,
-        @Query("pageNo") versionName: String,
-        @Query("numOfRows") packageName: String,
-    ): SimpleResponse
-
-    @GET("getParmacyFullDown")
-    suspend fun getFullDown(
-        @Query("serviceKey") versionCode: Int,
-        @Query("pageNo") versionName: String,
-        @Query("numOfRows") packageName: String,
-    ): SimpleResponse
-
+        @Query("serviceKey") serviceKey: String,
+        @Query("HPID") hpid: String,
+        @Query("pageNo") pageNo: Int,
+        @Query("numOfRows") packageName: Int,
+    ): DetailResponse
 }

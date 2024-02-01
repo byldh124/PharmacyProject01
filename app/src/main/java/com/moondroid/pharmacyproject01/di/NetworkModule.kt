@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    private const val BASE_URL = "https://apis.data.go.kr/B552657/ErmctInsttInfoInqireService/"
+    private const val BASE_URL = "http://apis.data.go.kr/B552657/ErmctInsttInfoInqireService/"
 
     @Provides
     @Singleton

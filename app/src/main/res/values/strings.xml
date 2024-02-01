@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">모두의 약국</string>
+    <string name="app_name">우리 동네 약국</string>
+    <string name="format_tel">Tel. %s</string>
 </resources>

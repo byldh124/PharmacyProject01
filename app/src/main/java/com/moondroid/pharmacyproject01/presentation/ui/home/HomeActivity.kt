@@ -1,17 +1,19 @@
 package com.moondroid.pharmacyproject01.presentation.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import com.google.android.gms.location.LocationServices
 import com.moondroid.pharmacyproject01.R
+import com.moondroid.pharmacyproject01.common.IntentParam
 import com.moondroid.pharmacyproject01.common.collectEvent
-import com.moondroid.pharmacyproject01.common.debug
+import com.moondroid.pharmacyproject01.common.dpToPixel
 import com.moondroid.pharmacyproject01.common.viewBinding
-import com.moondroid.pharmacyproject01.data.model.LocationItem
 import com.moondroid.pharmacyproject01.databinding.ActivityHomeBinding
 import com.moondroid.pharmacyproject01.presentation.base.BaseActivity
 import com.moondroid.pharmacyproject01.presentation.base.viewModel
+import com.moondroid.pharmacyproject01.presentation.ui.detail.DetailActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.LocationTrackingMode
@@ -35,6 +37,8 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.icBack.setOnClickListener { finish() }
+
         initView(savedInstanceState)
         collectEvent(viewModel.eventFlow, ::handleEvent)
     }
@@ -48,13 +52,13 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
                     marker.apply {
                         position = LatLng(item.latitude, item.longitude)
                         map = mNaverMap
-                        width = Marker.SIZE_AUTO
-                        height = Marker.SIZE_AUTO
+                        width = 28f.dpToPixel(mContext)
+                        height = 28f.dpToPixel(mContext)
                         captionText = item.dutyName
                         tag = item
-                        marker.icon = OverlayImage.fromResource(R.drawable.maker_icon)
+                        marker.icon = OverlayImage.fromResource(R.drawable.img_pharmacy)
                         onClickListener = Overlay.OnClickListener {
-                            getDetail(item)
+                            toDetail(item.hpid)
                             true
                         }
                     }
@@ -63,8 +67,10 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         }
     }
 
-    private fun getDetail(item: LocationItem) {
-        debug("item: $item")
+    private fun toDetail(hpid: String) {
+        startActivity(Intent(mContext, DetailActivity::class.java).apply {
+            putExtra(IntentParam.HPID, hpid)
+        })
     }
 
     private fun initView(savedInstanceState: Bundle?) {
@@ -85,7 +91,7 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         map.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
         map.isIndoorEnabled = true
 
-        map.addOnCameraChangeListener { reason, animated ->
+        map.addOnCameraChangeListener { reason, _ ->
             this.reason = reason
         }
 
@@ -94,7 +100,6 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
             if (reason == -1) {
                 val position = map.cameraPosition.target
                 val zoom = map.cameraPosition.zoom
-                debug("zoom: $zoom")
                 if (zoom >= 14.0) {
                     val numOfRows = (19 - zoom.toInt()) * 20
                     viewModel.get(numOfRows, position.longitude, position.latitude)

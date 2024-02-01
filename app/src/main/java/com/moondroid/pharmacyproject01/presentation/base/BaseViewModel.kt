@@ -26,7 +26,10 @@ open class BaseViewModel : ViewModel(), CoroutineScope {
     private var _commonEvent = MutableEventFlow<CommonEvent>()
     val commonEvent = _commonEvent.asEventFlow()
 
-    protected fun fail(message: String, callback: () -> Unit = {}) = event(CommonEvent.Fail(message, callback))
+    protected fun fail(message: String, callback: () -> Unit = {}) =
+        event(CommonEvent.Fail(message, callback))
+
+    protected fun finish() = event(CommonEvent.Finish)
 
     protected fun error(throwable: Throwable, callback: () -> Unit = {}) =
         event(CommonEvent.Error(throwable, callback))
@@ -50,5 +53,6 @@ open class BaseViewModel : ViewModel(), CoroutineScope {
         data class Error(val throwable: Throwable, val callback: () -> Unit) : CommonEvent
         data class Message(val message: String, val callback: () -> Unit) : CommonEvent
         data class Toast(val message: String) : CommonEvent
+        data object Finish : CommonEvent
     }
 }

@@ -74,6 +74,8 @@ dependencies {
 
     // lottie for animation
     implementation ("com.airbnb.android:lottie:6.3.0")
+
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
 }
 
 // Allow references to generated code

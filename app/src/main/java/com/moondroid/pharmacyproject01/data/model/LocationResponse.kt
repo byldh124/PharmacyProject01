@@ -23,7 +23,7 @@ data class LocationHeader(
 @Xml(name = "body")
 data class LocationBody(
     @Element(name = "items")
-    val items: Items,
+    val items: LocationItems,
     @PropertyElement(name = "numOfRows")
     val numOfRows: Int,
     @PropertyElement(name = "pageNo")
@@ -33,7 +33,7 @@ data class LocationBody(
 )
 
 @Xml(name= "items")
-data class Items(
+data class LocationItems(
     @Element(name="item")
     val item: List<LocationItem>
 )

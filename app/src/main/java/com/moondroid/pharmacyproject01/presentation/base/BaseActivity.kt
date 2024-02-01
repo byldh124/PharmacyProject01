@@ -40,6 +40,7 @@ open class BaseActivity : AppCompatActivity() {
             is BaseViewModel.CommonEvent.Fail -> showFailMessage(event.message, event.callback)
             is BaseViewModel.CommonEvent.Message -> {}
             is BaseViewModel.CommonEvent.Toast -> window.decorView.snack(event.message)
+            BaseViewModel.CommonEvent.Finish -> finish()
         }
     }
 

@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         for (int i = 0; i < G.items.size(); i++) {
             Marker marker = new Marker(new LatLng(Double.parseDouble(G.items.get(i).getLat()), Double.parseDouble(G.items.get(i).getLng())));
-            marker.setIcon(OverlayImage.fromResource(R.drawable.maker_icon));
+            marker.setIcon(OverlayImage.fromResource(R.drawable.img_pharmacy));
             marker.setTag(G.items.get(i));
             marker.setCaptionText(G.items.get(i).getName());
             marker.setOnClickListener(this);
