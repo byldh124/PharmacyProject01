@@ -3,11 +3,8 @@ package com.moondroid.pharmacyproject01.presentation.ui.home
 import androidx.lifecycle.viewModelScope
 import com.moondroid.pharmacyproject01.common.MutableEventFlow
 import com.moondroid.pharmacyproject01.common.asEventFlow
-import com.moondroid.pharmacyproject01.common.debug
 import com.moondroid.pharmacyproject01.data.model.LocationItem
 import com.moondroid.pharmacyproject01.domain.Repository
-import com.moondroid.pharmacyproject01.domain.model.onError
-import com.moondroid.pharmacyproject01.domain.model.onFail
 import com.moondroid.pharmacyproject01.domain.model.onSuccess
 import com.moondroid.pharmacyproject01.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,10 +25,6 @@ class HomeViewModel @Inject constructor(
                 loading(false)
                 it.onSuccess { list ->
                     event(Event.Update(list))
-                }.onFail { m ->
-                    fail(m)
-                }.onError { t ->
-                    error(t)
                 }
             }
         }

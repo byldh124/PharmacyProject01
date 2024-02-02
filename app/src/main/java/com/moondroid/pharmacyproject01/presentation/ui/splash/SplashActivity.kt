@@ -1,9 +1,13 @@
 package com.moondroid.pharmacyproject01.presentation.ui.splash
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.moondroid.pharmacyproject01.BuildConfig
 import com.moondroid.pharmacyproject01.common.exitApp
@@ -33,7 +37,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.btnMap.setOnClickListener {
-            startActivity(Intent(mContext, HomeActivity::class.java))
+            requestPermission()
         }
 
         binding.btnSearch.setOnClickListener {
@@ -44,6 +48,51 @@ class SplashActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
         checkAppVersion()
+    }
+
+    private val locationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
+            val deniedList: List<String> = result.filter {
+                !it.value
+            }.map {
+                it.key
+            }
+
+            if (deniedList.isNotEmpty()) {
+                ButtonDialog.Builder(mContext).apply {
+                    message = "앱 설정에서 위치 권한 설정 후 사용이 가능합니다."
+                    setPositiveButton("확인") {
+                        val settingIntent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        settingIntent.setData(Uri.parse("package:$packageName"))
+                        startActivity(settingIntent)
+                    }
+                }.show()
+            } else {
+                checkGps()
+            }
+        }
+
+    private fun requestPermission() {
+        locationPermissionLauncher.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+        )
+    }
+
+    private fun checkGps() {
+        val locationManager = mContext.getSystemService(LocationManager::class.java)
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            startActivity(Intent(mContext, HomeActivity::class.java))
+        } else {
+            ButtonDialog.Builder(mContext).apply {
+                message = "앱 사용을 위해 위치 정보를 설정해주세요."
+                setPositiveButton("확인") {
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                }
+            }.show()
+        }
     }
 
     private fun checkAppVersion() {

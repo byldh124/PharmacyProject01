@@ -3,9 +3,11 @@ package com.moondroid.pharmacyproject01.presentation.base
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelLazy
@@ -26,6 +28,14 @@ open class BaseActivity : AppCompatActivity() {
     // CommonDialog
     private val loadingDialog by lazy { LoadingDialog(mContext) }
     private val disconnectNetworkDialog by lazy { DisconnectNetworkDialog(mContext) }
+
+    // ActivityResult
+    private var onResult: (Intent?) -> Unit = {}
+
+    //ActivityResultLauncher
+    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode == RESULT_OK) onResult(it.data)
+    }
 
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,6 +96,17 @@ open class BaseActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             overridePendingTransition(0, 0)
         }
+    }
+
+    /**
+     * @param intent   실행 인텐트
+     * @param onResult Callback 메서드
+     *
+     * StartActivityForResult
+     */
+    fun startActivityForResult(intent: Intent, onResult: (Intent?) -> Unit) {
+        this.onResult = onResult
+        resultLauncher.launch(intent)
     }
 }
 

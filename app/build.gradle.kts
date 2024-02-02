@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.moondroid.pharmacyproject01"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 33
         versionCode = 4
         versionName = "1.0.4"
