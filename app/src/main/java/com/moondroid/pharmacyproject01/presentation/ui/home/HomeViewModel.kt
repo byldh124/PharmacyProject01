@@ -3,7 +3,7 @@ package com.moondroid.pharmacyproject01.presentation.ui.home
 import androidx.lifecycle.viewModelScope
 import com.moondroid.pharmacyproject01.common.MutableEventFlow
 import com.moondroid.pharmacyproject01.common.asEventFlow
-import com.moondroid.pharmacyproject01.data.model.LocationItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.LocationItem
 import com.moondroid.pharmacyproject01.domain.Repository
 import com.moondroid.pharmacyproject01.domain.model.onSuccess
 import com.moondroid.pharmacyproject01.presentation.base.BaseViewModel

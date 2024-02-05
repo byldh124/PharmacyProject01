@@ -24,14 +24,19 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.moondroid.pharmacyproject01.BuildConfig
+import com.moondroid.pharmacyproject01.common.firebase.FBCrash
 import kotlinx.coroutines.launch
 
 fun Any.debug(msg: String) {
-    Log.e("ImagePuzzle", "${this.javaClass.simpleName.trim()} | $msg")
+    if (BuildConfig.DEBUG) {
+        Log.e("ImagePuzzle", "${this.javaClass.simpleName.trim()} | $msg")
+    }
 }
 
 fun Any.logException(msg: Throwable) {
     Log.e("ImagePuzzle", "${this.javaClass.simpleName.trim()} LogException | ${msg.stackTraceToString()}")
+    FBCrash.logException(msg)
 }
 
 fun Context.toast(message: String) {

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.moondroid.pharmacyproject01.data.model.AddressItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.AddressItem
 import com.moondroid.pharmacyproject01.databinding.ItemPharmacyBinding
 
 class PagingAdapter(

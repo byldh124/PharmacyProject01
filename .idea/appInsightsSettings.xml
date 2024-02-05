@@ -27,10 +27,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.moondroid.pharmacyproject01" />
+                  <option name="mobileSdkAppId" value="1:239882554238:android:49dae81b0dabfb0f41812f" />
+                  <option name="projectId" value="wordcomplete-67bf1" />
+                  <option name="projectNumber" value="239882554238" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

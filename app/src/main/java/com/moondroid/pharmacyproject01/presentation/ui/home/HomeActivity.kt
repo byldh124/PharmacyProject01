@@ -34,6 +34,8 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
     private lateinit var locationSource: FusedLocationSource
     private lateinit var mNaverMap: NaverMap
 
+    private var markers : List<Marker> = emptyList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,7 +49,8 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
         when (event) {
             // 모임정보 불러오 이후 마커 표시
             is HomeViewModel.Event.Update -> {
-                event.list.forEach { item ->
+                markers.forEach { it.map = null }
+                markers = event.list.map { item ->
                     val marker = Marker()
                     marker.apply {
                         position = LatLng(item.latitude, item.longitude)
@@ -62,6 +65,7 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
                             true
                         }
                     }
+                    marker
                 }
             }
         }
@@ -100,9 +104,11 @@ class HomeActivity : BaseActivity(), OnMapReadyCallback {
             if (reason == -1) {
                 val position = map.cameraPosition.target
                 val zoom = map.cameraPosition.zoom
-                if (zoom >= 14.0) {
+                if (zoom >= 12.0) {
                     val numOfRows = (19 - zoom.toInt()) * 20
                     viewModel.get(numOfRows, position.longitude, position.latitude)
+                } else {
+                    markers.forEach { it.map = null }
                 }
             }
         }

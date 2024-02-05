@@ -1,9 +1,9 @@
 package com.moondroid.pharmacyproject01.domain
 
 import androidx.paging.PagingData
-import com.moondroid.pharmacyproject01.data.model.AddressItem
-import com.moondroid.pharmacyproject01.data.model.DetailItem
-import com.moondroid.pharmacyproject01.data.model.LocationItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.AddressItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.DetailItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.LocationItem
 import com.moondroid.pharmacyproject01.domain.model.ApiResult
 import kotlinx.coroutines.flow.Flow
 
@@ -26,4 +26,6 @@ interface Repository {
     ): Flow<ApiResult<List<LocationItem>>>
 
     suspend fun getDetail(hpid: String): Flow<ApiResult<DetailItem>>
+
+    suspend fun postMessage(message: String)
 }

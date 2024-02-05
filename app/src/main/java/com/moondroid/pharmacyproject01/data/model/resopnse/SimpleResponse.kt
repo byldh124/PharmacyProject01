@@ -1,4 +1,4 @@
-package com.moondroid.pharmacyproject01.data.model
+package com.moondroid.pharmacyproject01.data.model.resopnse
 
 import androidx.annotation.Keep
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.moondroid.pharmacyproject01.common.debug
-import com.moondroid.pharmacyproject01.data.model.DetailItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.DetailItem
 import com.moondroid.pharmacyproject01.domain.Repository
 import com.moondroid.pharmacyproject01.domain.model.onError
 import com.moondroid.pharmacyproject01.domain.model.onFail

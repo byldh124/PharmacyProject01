@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.moondroid.pharmacyproject01.BuildConfig
 import com.moondroid.pharmacyproject01.data.ApiService
 import com.moondroid.pharmacyproject01.data.MyApiService
+import com.moondroid.pharmacyproject01.data.SlackApiService
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import dagger.Module
@@ -24,6 +25,7 @@ import javax.inject.Singleton
 object NetworkModule {
     private const val BASE_URL = "http://apis.data.go.kr/B552657/ErmctInsttInfoInqireService/"
     private const val MY_URL = "http://moondroid.dothome.co.kr/imagePuzzle/"
+    private const val SLACK_URL = "https://slack.com/api/"
 
     @Provides
     @Singleton
@@ -85,5 +87,19 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
         return retrofit.create(MyApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSlackApiService(
+        okHttpClient: OkHttpClient,
+        gsonConverterFactory: GsonConverterFactory,
+    ): SlackApiService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(SLACK_URL)
+            .addConverterFactory(gsonConverterFactory)
+            .client(okHttpClient)
+            .build()
+        return retrofit.create(SlackApiService::class.java)
     }
 }

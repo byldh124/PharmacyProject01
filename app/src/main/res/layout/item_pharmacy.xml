@@ -7,7 +7,7 @@
 
         <variable
             name="pharmacy"
-            type="com.moondroid.pharmacyproject01.data.model.AddressItem" />
+            type="com.moondroid.pharmacyproject01.data.model.resopnse.AddressItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

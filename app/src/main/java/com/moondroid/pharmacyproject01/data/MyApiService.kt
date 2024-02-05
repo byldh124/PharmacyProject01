@@ -1,6 +1,6 @@
 package com.moondroid.pharmacyproject01.data
 
-import com.moondroid.pharmacyproject01.data.model.SimpleResponse
+import com.moondroid.pharmacyproject01.data.model.resopnse.SimpleResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

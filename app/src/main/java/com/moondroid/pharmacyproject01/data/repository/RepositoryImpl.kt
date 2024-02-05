@@ -7,9 +7,11 @@ import com.moondroid.pharmacyproject01.common.SERVICE_KEY
 import com.moondroid.pharmacyproject01.data.ApiService
 import com.moondroid.pharmacyproject01.data.MyApiService
 import com.moondroid.pharmacyproject01.data.PagingSource
-import com.moondroid.pharmacyproject01.data.model.AddressItem
-import com.moondroid.pharmacyproject01.data.model.DetailItem
-import com.moondroid.pharmacyproject01.data.model.LocationItem
+import com.moondroid.pharmacyproject01.data.SlackApiService
+import com.moondroid.pharmacyproject01.data.model.request.PostMessageRequest
+import com.moondroid.pharmacyproject01.data.model.resopnse.AddressItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.DetailItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.LocationItem
 import com.moondroid.pharmacyproject01.domain.Repository
 import com.moondroid.pharmacyproject01.domain.model.ApiResult
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +24,7 @@ import javax.inject.Inject
 class RepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val mApiService: MyApiService,
+    private val slackApiService: SlackApiService,
 ) : Repository {
     companion object {
         const val RESULT_OK = "00"
@@ -79,5 +82,9 @@ class RepositoryImpl @Inject constructor(
                 emit(ApiResult.Error(e))
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    override suspend fun postMessage(message: String) {
+        slackApiService.postMessage(PostMessageRequest("C06H55PNMSN", message))
     }
 }

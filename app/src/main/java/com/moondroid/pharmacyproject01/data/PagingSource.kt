@@ -2,7 +2,7 @@ package com.moondroid.pharmacyproject01.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.moondroid.pharmacyproject01.data.model.AddressItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.AddressItem
 
 class PagingSource(
     private val apiService : ApiService,

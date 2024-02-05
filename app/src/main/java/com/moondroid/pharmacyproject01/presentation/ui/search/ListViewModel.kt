@@ -5,7 +5,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.moondroid.pharmacyproject01.common.MutableEventFlow
 import com.moondroid.pharmacyproject01.common.asEventFlow
-import com.moondroid.pharmacyproject01.data.model.AddressItem
+import com.moondroid.pharmacyproject01.data.model.resopnse.AddressItem
 import com.moondroid.pharmacyproject01.domain.Repository
 import com.moondroid.pharmacyproject01.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

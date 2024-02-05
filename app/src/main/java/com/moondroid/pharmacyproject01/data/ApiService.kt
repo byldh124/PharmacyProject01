@@ -1,8 +1,8 @@
 package com.moondroid.pharmacyproject01.data
 
-import com.moondroid.pharmacyproject01.data.model.AddressResponse
-import com.moondroid.pharmacyproject01.data.model.DetailResponse
-import com.moondroid.pharmacyproject01.data.model.LocationResponse
+import com.moondroid.pharmacyproject01.data.model.resopnse.AddressResponse
+import com.moondroid.pharmacyproject01.data.model.resopnse.DetailResponse
+import com.moondroid.pharmacyproject01.data.model.resopnse.LocationResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
