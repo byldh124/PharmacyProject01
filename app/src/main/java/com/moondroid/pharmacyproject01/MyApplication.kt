@@ -28,9 +28,9 @@ class MyApplication : Application() {
         FBAnalyze.init(applicationContext)
         Preferences.init(applicationContext)
 
-        //if (!BuildConfig.DEBUG) {
+        if (!BuildConfig.DEBUG) {
             postMessage()
-        //}
+        }
     }
 
     @SuppressLint("SimpleDateFormat")
