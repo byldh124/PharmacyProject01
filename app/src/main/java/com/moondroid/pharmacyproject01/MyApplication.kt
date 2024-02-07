@@ -28,23 +28,23 @@ class MyApplication : Application() {
         FBAnalyze.init(applicationContext)
         Preferences.init(applicationContext)
 
-        if (!BuildConfig.DEBUG) {
+        //if (!BuildConfig.DEBUG) {
             postMessage()
-        }
+        //}
     }
 
     @SuppressLint("SimpleDateFormat")
     private fun postMessage() {
         CoroutineScope(Dispatchers.Main).launch {
+            val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
             val prefix = if (Preferences.getBoolean("first_open", true)) {
                 Preferences.putBoolean("first_open", false)
-                "[신규 회원]"
+                "[${getString(R.string.app_name)} - 신규]"
             } else {
-                "[기존 회원]"
+                "[${getString(R.string.app_name)} - 기존]"
             }
-            val appName = getString(R.string.app_name)
-            val date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
-            repository.postMessage("$prefix $appName 사용자가 들어왔습니다. $date")
+            val token = "Bearer ${getString(R.string.slack_token)}"
+            repository.postMessage(token, "$prefix\n사용자가 들어왔습니다. $date")
         }
     }
 }

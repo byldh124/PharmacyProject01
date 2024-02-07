@@ -27,5 +27,5 @@ interface Repository {
 
     suspend fun getDetail(hpid: String): Flow<ApiResult<DetailItem>>
 
-    suspend fun postMessage(message: String)
+    suspend fun postMessage(token: String, message: String)
 }

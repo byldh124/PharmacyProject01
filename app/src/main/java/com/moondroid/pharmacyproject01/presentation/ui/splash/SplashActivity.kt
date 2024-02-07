@@ -10,8 +10,6 @@ import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.moondroid.pharmacyproject01.BuildConfig
-import com.moondroid.pharmacyproject01.R
-import com.moondroid.pharmacyproject01.common.Preferences
 import com.moondroid.pharmacyproject01.common.exitApp
 import com.moondroid.pharmacyproject01.common.logException
 import com.moondroid.pharmacyproject01.common.viewBinding
@@ -25,8 +23,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
 import javax.inject.Inject
 
 @SuppressLint("CustomSplashScreen")
@@ -47,8 +43,6 @@ class SplashActivity : BaseActivity() {
         binding.btnSearch.setOnClickListener {
             startActivity(Intent(mContext, AddressActivity::class.java))
         }
-
-
     }
 
     override fun onStart() {

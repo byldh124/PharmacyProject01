@@ -84,7 +84,7 @@ class RepositoryImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun postMessage(message: String) {
-        slackApiService.postMessage(PostMessageRequest("C06H55PNMSN", message))
+    override suspend fun postMessage(token: String, message: String) {
+        slackApiService.postMessage(token, PostMessageRequest("C06H55PNMSN", message))
     }
 }

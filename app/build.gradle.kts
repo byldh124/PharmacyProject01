@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -7,6 +9,8 @@ plugins {
     id("com.google.firebase.crashlytics")
 }
 
+val properties = gradleLocalProperties(rootDir)
+
 android {
     namespace = "com.moondroid.pharmacyproject01"
     compileSdk = 34
@@ -15,10 +19,13 @@ android {
         applicationId = "com.moondroid.pharmacyproject01"
         minSdk = 23
         targetSdk = 33
-        versionCode = 5
-        versionName = "1.0.5"
+        versionCode = 6
+        versionName = "1.0.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val slackToken = properties.getProperty("slack.token")
+        resValue("string", "slack_token", slackToken)
     }
 
     buildTypes {
