@@ -10,7 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://naver.jfrog.io/artifactory/maven/") }
+        //maven { url = uri("https://naver.jfrog.io/artifactory/maven/") }
+        maven {url = uri("https://repository.map.naver.com/archive/maven")}
     }
 }
 

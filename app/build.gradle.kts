@@ -18,7 +18,7 @@ android {
     defaultConfig {
         applicationId = "com.moondroid.pharmacyproject01"
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 6
         versionName = "1.0.6"
 
@@ -50,16 +50,16 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 
-    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.activity:activity-ktx:1.9.1")
 
     // retrofit2
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -74,8 +74,8 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // map
-    implementation("com.google.android.gms:play-services-location:21.1.0")
-    implementation("com.naver.maps:map-sdk:3.17.0")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.naver.maps:map-sdk:3.19.0")
 
     // xml parser
     implementation ("com.tickaroo.tikxml:annotation:0.8.13")
@@ -87,10 +87,10 @@ dependencies {
     implementation ("com.airbnb.android:lottie:6.3.0")
 
     // paging3
-    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation("androidx.paging:paging-runtime-ktx:3.3.2")
 
     // firebase bom
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
 }
